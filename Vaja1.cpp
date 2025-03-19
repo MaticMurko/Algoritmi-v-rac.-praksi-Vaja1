@@ -56,6 +56,11 @@ int main(int argc, const char* argv[]) {
 		int minst = min(A);
 		if (minst < 0)
 			prirediPlus(A, minst);
+		vector<int> C(max(A) + 1);
+		for (int i = 0; i < C.size(); i++)
+			C[i] = 0;
+		for (int i = 0; i < A.size(); i++)
+			C[A[i]] = C[A[i]] + 1;
 	}
 	else {
 		//Roman sort
