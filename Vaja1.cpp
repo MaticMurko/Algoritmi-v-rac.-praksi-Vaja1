@@ -79,6 +79,15 @@ int main(int argc, const char* argv[]) {
 			C[i] = 0;
 		for (int i = 0; i < A.size(); i++)
 			C[A[i]] = C[A[i]] + 1;
+		int inB = 0;
+		for (int i = 0; i < C.size(); i++) {
+			if (C[i] > 0) {
+				for (int j = 0; j < C[i]; j++) {
+					B[inB] = i;
+					inB++;
+				}
+			}
+		}
 	}
 	Izpis_Stevil(&A[0],A.size());
 
