@@ -71,7 +71,9 @@ int main(int argc, const char* argv[]) {
 			B[i] = B[i] + minst;
 	}
 	else {
-		//Roman sort
+		int minst = min(A);
+		if (minst < 0)
+			prirediPlus(A, minst);
 	}
 	Izpis_Stevil(&A[0],A.size());
 
