@@ -53,7 +53,9 @@ int main(int argc, const char* argv[]) {
 	if (!Branje_Stevil(A, argv[2])) return 0;
 
 	if (argv[1][0] == '0') {
-		//counting sort
+		int minst = min(A);
+		if (minst < 0)
+			prirediPlus(A, minst);
 	}
 	else {
 		//Roman sort
