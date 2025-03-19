@@ -41,7 +41,9 @@ int max(vector<int> vec){
 	}
 	return max;
 }
-
+void prirediPlus(vector<int>& vec, int y){
+	
+}
 int main(int argc, const char* argv[]) {
 	vector<int> A;
 
