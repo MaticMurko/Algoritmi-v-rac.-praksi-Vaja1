@@ -42,7 +42,9 @@ int max(vector<int> vec){
 	return max;
 }
 void prirediPlus(vector<int>& vec, int y){
-	
+	for (int i = 0; i < vec.size(); i++) {
+		vec[i] = vec[i] - y;
+	}
 }
 int main(int argc, const char* argv[]) {
 	vector<int> A;
