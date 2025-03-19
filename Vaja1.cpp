@@ -88,6 +88,8 @@ int main(int argc, const char* argv[]) {
 				}
 			}
 		}
+		for (int i = 0; i < B.size(); i++)
+			B[i] = B[i] + minst;
 	}
 	Izpis_Stevil(&A[0],A.size());
 
