@@ -51,7 +51,7 @@ int main(int argc, const char* argv[]) {
 
 	if (argc < 3) return 0;
 	if (!Branje_Stevil(A, argv[2])) return 0;
-
+	vector<int> B(A.size());
 	if (argv[1][0] == '0') {
 		int minst = min(A);
 		if (minst < 0)
@@ -63,6 +63,10 @@ int main(int argc, const char* argv[]) {
 			C[A[i]] = C[A[i]] + 1;
 		for (int i = 1; i < C.size(); i++)
 			C[i] = C[i] + C[i - 1];
+		for (int i = A.size() - 1; i >= 0; i--) {
+			B[C[A[i]] - 1] = A[i];
+			C[A[i]]--;
+		}
 	}
 	else {
 		//Roman sort
