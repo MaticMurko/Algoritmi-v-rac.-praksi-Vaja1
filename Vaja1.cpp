@@ -71,7 +71,25 @@ int main(int argc, const char* argv[]) {
 			B[i] = B[i] + minst;
 	}
 	else {
-		//Roman sort
+		int minst = min(A);
+		if (minst < 0)
+			prirediPlus(A, minst);
+		vector<int> C(max(A) + 1);
+		for (int i = 0; i < C.size(); i++)
+			C[i] = 0;
+		for (int i = 0; i < A.size(); i++)
+			C[A[i]] = C[A[i]] + 1;
+		int inB = 0;
+		for (int i = 0; i < C.size(); i++) {
+			if (C[i] > 0) {
+				for (int j = 0; j < C[i]; j++) {
+					B[inB] = i;
+					inB++;
+				}
+			}
+		}
+		for (int i = 0; i < B.size(); i++)
+			B[i] = B[i] + minst;
 	}
 	Izpis_Stevil(&A[0],A.size());
 
