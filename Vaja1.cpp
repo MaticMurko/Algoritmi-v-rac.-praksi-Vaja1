@@ -25,6 +25,12 @@ void Izpis_Stevil(int* polje, unsigned int velikost) {
 	for (int i = 0; i<velikost; i++)
 		output << polje[i] << ' ';
 }
+int min(vector<int> vec){
+
+}
+int max(vector<int> vec){
+	
+}
 
 int main(int argc, const char* argv[]) {
 	vector<int> A;
