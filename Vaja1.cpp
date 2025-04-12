@@ -93,7 +93,7 @@ int main(int argc, const char* argv[]) {
 	}
 	Izpis_Stevil(&A[0],A.size());
 
-	//test4
+	//test5
 
 	return 0;
 }
