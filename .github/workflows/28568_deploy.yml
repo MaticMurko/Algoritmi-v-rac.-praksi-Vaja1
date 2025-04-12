@@ -2,7 +2,7 @@ name: Docker Deploy
 
 on:
   workflow_run:
-    workflows: ["C++ CI Workflow with Error Handling"]  # Ime prve skripte
+    workflows: ["testiranje"]  # Ime prve skripte
     types:
       - completed
 
