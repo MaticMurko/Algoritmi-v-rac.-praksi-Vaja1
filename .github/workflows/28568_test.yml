@@ -20,11 +20,15 @@ jobs:
 
       - name: Install Google Test
         run: |
-          # Google Test is typically not pre-installed, so we need to build it from source
+          # Manually install Google Test from source
+          sudo apt-get install -y cmake
+          sudo apt-get install -y libgtest-dev
+
+          # Build and install Google Test
           cd /usr/src/gtest
           sudo cmake CMakeLists.txt
           sudo make
-          sudo cp libg* /usr/lib
+          sudo cp libgtest*.a /usr/lib/  # Copy the .a libraries
 
       - name: Build the C++ code and tests
         run: |
