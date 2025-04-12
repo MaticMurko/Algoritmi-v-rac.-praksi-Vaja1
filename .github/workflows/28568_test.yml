@@ -20,5 +20,5 @@ jobs:
 
       - name: Compile and run tests
         run: |
-          g++ -std=c++11 Vaja1.cpp test.cpp -o test_exec
+          g++ -std=c++11 Vaja1.cpp tests/test.cpp -o test_exec
           ./test_exec
