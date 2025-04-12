@@ -45,7 +45,7 @@ void prirediPlus(vector<int>& vec, int y){
 	for (int i = 0; i < vec.size(); i++) {
 		vec[i] = vec[i] - y;
 	}
-}
+}/*
 int main(int argc, const char* argv[]) {
 	vector<int> A;
 
@@ -93,7 +93,8 @@ int main(int argc, const char* argv[]) {
 	}
 	Izpis_Stevil(&A[0],A.size());
 
-	//test10
+	//test11
 
 	return 0;
 }
+*/
