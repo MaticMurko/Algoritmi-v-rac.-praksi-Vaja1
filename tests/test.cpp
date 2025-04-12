@@ -4,7 +4,7 @@
 using namespace std;
 
 // Include the functions from your code
-#include "../Vaja1.cpp"
+#include "../Funkcija.cpp"
 
 void test_min() {
     vector<int> v = {4, 2, 9, -1};
