@@ -1,0 +1,16 @@
+name: Test Self-hosted Runner
+
+on:
+  push:
+    branches:
+      - master  # This means the action will trigger when there is a push to the main branch
+
+jobs:
+  test-job:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Print hello
+        run: echo "Hello from the self-hosted runner!"
+
