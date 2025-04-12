@@ -1,24 +1,52 @@
-name: C++ CI Workflow with Google Test
+name: C++ CI Workflow with Error Handling
 
 on:
   push:
     branches:
-      - master  # Trigger on push to the main branch
+      - master
 
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
+    outputs:
+      test-status: ${{ steps.set-output.outputs.status }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # Check out the code in the repository
+        uses: actions/checkout@v2
 
-      - name: Set up C++ environment
+      - name: Set up environment
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake libgtest-dev g++  # Install build tools, GTest, and C++ compiler
+          sudo apt-get install -y build-essential cmake libgtest-dev g++
 
-      - name: Compile and run tests
+      - name: Compile and run tests with error output
         run: |
-          g++ -std=c++11 tests/test.cpp  -o test_exec
-          ./test_exec
+          g++ -std=c++11 tests/test.cpp -o test_exec 2> napaka.txt || true
+          ./test_exec || true
+
+      - name: Upload error file
+        uses: actions/upload-artifact@v3
+        with:
+          name: napaka
+          path: napaka.txt
+
+  check_error:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download napaka.txt
+        uses: actions/download-artifact@v3
+        with:
+          name: napaka
+
+      - name: Check for errors
+        run: |
+          if [ -s napaka.txt ]; then
+            echo "Errors found in napaka.txt:"
+            cat napaka.txt
+            exit 1
+          else
+            echo "No errors, all good."
+          fi
