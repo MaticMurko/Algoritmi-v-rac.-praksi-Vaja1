@@ -18,28 +18,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential cmake libgtest-dev g++  # Install build tools, GTest, and C++ compiler
 
-      - name: Install Google Test
+      - name: Compile and run tests
         run: |
-          # Manually install Google Test from source
-          sudo apt-get install -y cmake
-          sudo apt-get install -y libgtest-dev
-
-          # Build and install Google Test
-          cd /usr/src/gtest
-          sudo cmake CMakeLists.txt
-          sudo make
-          sudo cp libgtest*.a /usr/lib/  # Copy the .a libraries
-
-      - name: Build the C++ code and tests
-        run: |
-          # Create a build directory and navigate into it
-          mkdir -p build
-          cd build
-
-          # Compile the actual code (Vaja1.cpp) and link it to Google Test library
-          g++ -std=c++11 -isystem /usr/include/gtest -L /usr/lib -lgtest -lgtest_main -pthread ../Vaja1.cpp -o Vaja1_test
-
-      - name: Run the tests
-        run: |
-          # Run the compiled code (Vaja1_test) with the tests
-          ./build/Vaja1_test
+          g++ -std=c++11 Vaja1.cpp test_Vaja1.cpp -o test_exec
+          ./test_exec
