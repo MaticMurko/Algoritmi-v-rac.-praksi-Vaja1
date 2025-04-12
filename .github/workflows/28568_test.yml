@@ -1,4 +1,4 @@
-name: C++ CI Workflow with Error Handling
+name: testiranje
 
 on:
   push:
