@@ -3,7 +3,6 @@
 #include <vector>
 using namespace std;
 
-// Include the functions from your code
 #include "../Funkcija.cpp"
 
 void test_min() {
