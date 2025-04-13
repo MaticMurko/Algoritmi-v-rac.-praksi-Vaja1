@@ -8,6 +8,9 @@ on:
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cpp_version: [c++11, c++14, c++17]  # matrika za testiranje verzij c++
 
     steps:
       - name: Checkout repository
@@ -20,31 +23,36 @@ jobs:
 
       - name: Compile and run tests with error output
         run: |
-          g++ -std=c++11 tests/test.cpp -o test_exec 2> napaka.txt || true
+          echo "Testing with standard: ${{ matrix.cpp_version }}"
+          g++ -std=${{ matrix.cpp_version }} tests/test.cpp -o test_exec 2> napaka.txt || true
           ./test_exec || true
 
       - name: Upload error file
         uses: actions/upload-artifact@v4
         with:
-          name: napaka
+          name: napaka-${{ matrix.cpp_version }}
           path: napaka.txt
 
   check_error:
     needs: build_and_test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cpp_version: [c++11, c++14, c++17]
 
     steps:
       - name: Download napaka.txt
         uses: actions/download-artifact@v4
         with:
-          name: napaka
+          name: napaka-${{ matrix.cpp_version }}
 
       - name: Check for errors
         run: |
+          echo "Checking napaka.txt for standard ${{ matrix.cpp_version }}"
           if [ -s napaka.txt ]; then
             echo "Errors found in napaka.txt:"
             cat napaka.txt
             exit 1
           else
-            echo "No errors, all good."
+            echo "No errors with ${{ matrix.cpp_version }}, all good."
           fi
